@@ -1,0 +1,138 @@
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Danh mục sản phẩm</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/home">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="#">Danh mục sản phẩm</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class=" mt-4 container">
+    <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-5">
+            <div class="sidebar-categories">
+                <div class="head">Danh mục sản phẩm</div>
+                <ul class="main-categories">
+                    <li class="main-nav-list">
+                        <a class="border-bottom-0" href="/products">
+                            <span class="lnr lnr-arrow-right"></span>
+                            Tất cả sản phẩm
+                        </a>
+                    </li>
+                    <ng-container *ngFor="let item of listOfCategory">
+                        <li *ngIf="(categoryId && categoryId == item.categoryID); else elseBlock" style="background: #ffba00;
+                        color: #fff;" class="main-nav-list">
+                            <a class="border-bottom-0" href="/products/{{item.categoryID}}">
+                                <span class="lnr lnr-arrow-right"></span>
+                                {{item.categoryName}}
+                            </a>
+                        </li>
+                        <ng-template #elseBlock>
+                            <li class="main-nav-list">
+                                <a class="border-bottom-0" href="/products/{{item.categoryID}}">
+                                    <span class="lnr lnr-arrow-right"></span>
+                                    {{item.categoryName}}
+                                </a>
+                            </li>
+                        </ng-template>
+
+                    </ng-container>
+
+
+                </ul>
+            </div>
+            <div class="sidebar-filter mt-50">
+                <div class="top-filter-head">Lọc sản phẩm</div>
+                <div class="common-filter">
+                    <div class="head">Thương hiệu</div>
+                    <ul>
+
+                        <li *ngFor="let item of listOfBrand" class="filter-list"><input class="pixel-radio" type="radio"
+                                (click)="filterByBrand(item.brandID)" id="apple" name="brand"><label for="apple"><a>
+                                    {{item.brandName}}
+                                </a></label></li>
+
+                    </ul>
+                </div>
+
+                <div class="common-filter">
+                    <div class="head">Price</div>
+                    <h3>Khoảng Giá: </h3>
+                    <p id="price_show">0 - 30,000,000</p>
+                    <nz-slider nzRange [(ngModel)]="price" [nzMin]="0" [nzMax]="30000000" [nzStep]="1000000"
+                        (nzOnAfterChange)="priceChange($event)"></nz-slider>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xl-9 col-lg-8 col-md-7">
+            <!-- Start Filter Bar -->
+            <div class="filter-bar d-flex flex-wrap align-items-center">
+                <div class="sorting" style="display:flex;">
+                    <p class="text-white pr-2">Lọc theo</p>
+                    <nz-select ngModel="{{status}}" (ngModelChange)="changeStatus($event)">
+                        <nz-option nzValue="default" nzLabel="Mặc định"></nz-option>
+                        <nz-option nzValue="p-des" nzLabel="Giá giảm dần"></nz-option>
+                        <nz-option nzValue="p-asc" nzLabel="Giá tăng dần"></nz-option>
+                        <nz-option nzValue="p-promotion" nzLabel="Khuyến mãi"></nz-option>
+                    </nz-select>
+                </div>
+            </div>
+            <h3>Bạn tìm được: {{totalProduct}} sản phẩm </h3>
+            <!-- End Filter Bar -->
+            <!-- Start Best Seller -->
+            <section class="lattest-product-area pb-40" style="min-width: 500px !important;">
+                <div class="mid-popular row" id="content_value">
+                    <div *ngFor="let item of listOfData" class="col-lg-4 col-md-6">
+                        <div class="single-product">
+                            <div style="text-align: center;">
+                                <img style="height:200px; width:75%;" class="img-fluid"
+                                src="../../assets/{{item.productImage}}" alt="">
+                            </div>
+                            
+                            <div class="product-details">
+                                <h6><a href="product-detail/{{item.productID}}">{{item.productName}}</a></h6>
+                                <div class="price">
+                                    <h6 *ngIf="item?.productPromotion <= 0 "> {{item?.productPrice | number}} VNĐ</h6>
+                                    <h6 *ngIf="item?.productPromotion > 0 "><h6 class="km">{{item?.productPrice | number}} VNĐ</h6> - {{item?.productPromotion | number}}% <br/>{{item?.productPrice * (1 - (item?.productPromotion)/100) | number}} VNĐ</h6>
+                                    <span  *ngIf="item.productQuantily == 0 "  class="text-danger">Đã hết hàng</span>
+                                </div>
+                                <div class="prd-bottom">
+
+                                    <a *ngIf="item.productQuantily > 0 " (click)="addToCart(item)" class="social-info">
+                                        <span class="ti-bag"></span>
+                                        <p class="hover-text">Thêm vào giỏ</p>
+                                    </a>
+                                    <a href="product-detail/{{item.productID}}" class="social-info">
+                                        <span class="lnr lnr-move"></span>
+                                        <p class="hover-text">Xem thêm</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- End Best Seller -->
+
+            <div  class="row mb-5">
+                <div class="col-md-8 mx-auto">
+                    <nz-pagination [nzPageIndex]="pageIndex" [nzTotal]="totalProduct" nzShowSizeChanger
+                        [nzPageSize]="pageSize" (nzPageIndexChange)="onPageIndexChange($event)"
+                        (nzPageSizeChange)="onPageSizeChange($event)">
+                    </nz-pagination>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>

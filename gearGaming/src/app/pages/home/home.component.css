@@ -1,0 +1,7 @@
+.hiden{
+    display: none !important;
+}
+.km {
+    text-decoration: line-through;
+    color: red;
+}

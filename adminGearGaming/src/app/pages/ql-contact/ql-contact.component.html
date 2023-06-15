@@ -1,0 +1,73 @@
+<form nz-form [formGroup]="searchForm" class="ant-advanced-search-form">
+    <div nz-row [nzGutter]="24">
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label>Tên khách hàng</nz-form-label>
+                <nz-form-control>
+                    <input nz-input placeholder="Tên khách hàng" formControlName="contactName" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label>Email khách hàng</nz-form-label>
+                <nz-form-control>
+                    <input nz-input placeholder="Email khách hàng" formControlName="contactEmail" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label>Trạng thái</nz-form-label>
+                <nz-form-control>
+                    <nz-select formControlName="status">
+                        <nz-option nzValue="" nzLabel="Tất cả"></nz-option>
+                        <nz-option nzValue="Pending" nzLabel="Chờ xử lý"></nz-option>
+                        <nz-option nzValue="Processed" nzLabel="Đã xử lý"></nz-option>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+    <div nz-row>
+        <div nz-col [nzSpan]="24" class="search-area">
+            <button nz-button (click)="search()" [nzType]="'primary'">Search</button>
+            <button nz-button (click)="resetForm()">Clear</button>
+        </div>
+    </div>
+</form>
+<div>
+    <nz-table nzShowSizeChanger [nzData]="listOfData" [nzFrontPagination]="false" [nzLoading]="loading"
+        [nzTotal]="total" [nzPageSize]="pageSize" [nzPageIndex]="pageIndex"
+        (nzQueryParams)="onQueryParamsChange($event)">
+        <thead>
+            <tr>
+                <th nzColumnKey="ContactID" [nzSortFn]="true" style="text-align: center;">Mã Liên hệ</th>
+                <th style="text-align: center;">Tên khách hàng</th>
+                <th style="text-align: center;">Email</th>
+                <th style="text-align: center;">Tiêu đề</th>
+                <th style="text-align: center;">Nội dung</th>
+                <th nzColumnKey="date" [nzSortFn]="true" style="text-align: center;">Ngày</th>
+                <th style="text-align: center;">Tình trạng</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of listOfData; ; let i = index">
+                <td>{{data.contactID}}</td>
+                <td>{{data.contactName}}</td>
+                <td>{{data.contactEmail}}</td>
+                <td>{{data.contactTitle}}</td>
+                <td>{{data.contactMessage}}</td>
+                <td>{{data.date|date:'dd/MM/yyyy'}}</td>
+                <td>
+                    <nz-select ngModel="{{data.status}}"
+                        (ngModelChange)="changeStatus($event,data)">
+                        <nz-option nzValue="Pending" nzLabel="Chờ xử lý"></nz-option>
+                        <nz-option nzValue="Processed" nzLabel="Đã xử lý"></nz-option>
+                    </nz-select>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</div>
+

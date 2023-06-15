@@ -1,0 +1,117 @@
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Liên hệ</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/home">Trang chủ<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="#">Liên hệ</a>
+
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- contact -->
+    <div class="contact">
+        <div class="container row mx-auto" >
+
+
+            <div class="col-md-8 contact-grids1 animated wow fadeInRight" data-wow-delay=".5s">
+                <form [formGroup]="validateForm" (ngSubmit)="submitForm()" >
+                    <div class="contact-form2">
+                        <h4>Họ và tên</h4>
+
+                        <input type="text" formControlName="userName" placeholder="" required>
+
+                    </div>
+
+                    <div class="contact-form2">
+                        <h4>Email</h4>
+
+                        <input type="email"  formControlName="email" placeholder="" required>
+
+                    </div>
+                    <div class="contact-form2">
+                        <h4>Tiêu đề</h4>
+
+                        <input type="text" formControlName="subject" placeholder="" required>
+
+                    </div>
+
+
+                    <div class="contact-me ">
+                        <h4>Lời nhắn</h4>
+
+                        <textarea type="text"  formControlName="content" placeholder="" required> </textarea>
+                    </div>
+                    <input type="hidden" name="command" value="insert">
+                    <input type="submit" value="Gửi Liên Hệ" >
+                </form>
+
+            </div>
+
+            <div class="col-md-4 contact-grids">
+                <div class=" contact-grid animated wow fadeInLeft" data-wow-delay=".5s">
+                    <div class="contact-grid1">
+                        <div class="contact-grid5 ">
+                            <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
+                        </div>
+                        <div class="contact-grid3">
+                            <h4>Địa Chỉ</h4>
+                            <span>Xã Hiệp thuận, Huyện Phúc Thọ, TP.Hà Nội</span>
+                        </div>
+                    </div>
+                </div>
+                <div class=" contact-grid animated wow fadeInUp" data-wow-delay=".5s">
+                    <div class="contact-grid1">
+                        <div class="contact-grid2">
+                            <i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>
+                        </div>
+                        <div class="contact-grid3">
+                            <h4>Gọi Chúng Tôi</h4>
+                            <span>0971 126 791</span>
+                        </div>
+                    </div>
+                </div>
+                <div class=" contact-grid animated wow fadeInRight" data-wow-delay=".5s">
+                    <div class="contact-grid1">
+                        <div class="contact-grid4">
+                            <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
+                        </div>
+                        <div class="contact-grid3">
+                            <h4>Email</h4>
+                            <span><a href="contactto:info@example.com">dodinhnam2000@gmail.com</a></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"> </div>
+
+
+    <div class="social animated wow fadeInUp" data-wow-delay=".1s">
+        <div class="container row text-center" style="margin: auto;">
+            <div class="col-sm-3 social-ic">
+                <a href="#">FACEBOOK</a>
+            </div>
+            <div class="col-sm-3 social-ic">
+                <a href="#">TWITTER</a>
+            </div>
+            <div class="col-sm-3 social-ic">
+                <a href="#">GOOGLE+</a>
+            </div>
+            <div class="col-sm-3 social-ic">
+                <a href="#">PINTEREST</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29783.850946937295!2d105.62356697558273!3d21.073406352334207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313457003f4bec55%3A0x9e94fe6690abfa3f!2zSGnhu4dwIFRodeG6rW4sIFBow7pjIFRo4buNLCBIYW5vaSwgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1650710752446!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div >

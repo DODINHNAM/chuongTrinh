@@ -1,0 +1,121 @@
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Giỏ hàng</h1>
+                <nav class="d-flex align-items-center" >
+                    <a href="/home">Trang chủ<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="#">Giỏ hàng </a>
+
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="check-out">
+    <div class="container">
+        <ng-container *ngIf="listOfProduct.length > 0; else elseBlock">
+            <table class="table animated wow fadeInLeft" data-wow-delay=".5s">
+                <tr>
+                    <th class="t-head">Hình ảnh</th>
+                    <th class="t-head ">Mặt Hàng</th>
+                    <th class="t-head">Giá</th>
+                    <th class="t-head">Số Lượng</th>
+                    <th class="t-head"></th>
+                </tr>
+
+                <tr *ngFor="let item of listOfProduct" class="cross1">
+                    <td class="t-data" style="width:  25%;">
+                        <a href="product-detail/{{item.productID}}" class="at-in">
+                            <img src="../../assets/{{item.productImage}}" class="fashion-grid" alt="">
+                        </a>
+                    </td>
+                    <td class="t-data"  style="width:  25%;">
+                        <h3>
+                            {{item.productName}}
+                        </h3>
+                    </td>
+                    <td class="t-data"*ngIf="item?.productPromotion <= 0 ">{{item?.productPrice | number}} VNĐ</td>
+                    <td class="t-data" *ngIf="item?.productPromotion > 0 ">{{item?.productPrice * (1 - (item?.productPromotion)/100) | number}} VNĐ</td>
+                    <td class="t-data">
+                        <div class="quantity">
+                            <div class="quantity-select">
+                                <div (click)="minusProduct(item)" class="entry value-minus">&nbsp;</div>
+                                <div class="entry value">
+                                    {{item.quanlityBuy | number}}
+                                </div>
+
+                                <div (click)="plusProduct(item)" class="entry value-plus active">&nbsp;</div>
+                            </div>
+
+                        </div>
+
+
+                    </td>
+
+                    <td class="t-data"><i (click)="delProduct(item.productID)" class="icon-del" nz-icon
+                            nzType="close-circle" nzTheme="outline" [nzTheme]="'twotone'"
+                            [nzTwotoneColor]="'#eb2f96'"></i> </td>
+
+                </tr>
+
+            </table>
+            <div class=" ">
+
+                <h5 class="continue">Tổng Cộng Giỏ Hàng</h5>
+                <div class="price-details">
+                    <h3>Chi Tiết Giá</h3>
+                    <span>Tổng Cộng</span>
+                    <span class="total1">
+                        Tổng giá VND
+                    </span>
+                    <span>Giảm giá</span>
+                    <span class="total1">---</span>
+                    <span>Phí vận chuyển</span>
+                    <span class="total1">Miễn phí</span>
+                    <div class="clearfix"></div>
+                </div>
+                <ul class="total_price">
+                    <li class="last_price">
+                        <h4>Tổng Cộng</h4>
+                    </li>
+                    <li class="last_price"><span>
+                            {{totalPrice| number}} VNĐ
+                        </span></li>
+                    <div class="clearfix"> </div>
+                </ul>
+
+                <a class="btn-cash" (click)="payment()">Thanh Toán</a>
+
+            </div>
+        </ng-container>
+        <ng-template #elseBlock>
+            <nz-result nzStatus="404" nzTitle="Giỏ hàng đang trống"
+                nzSubTitle="Hãy thêm sản phẩm vào giỏ hàng bạn nhé!">
+                <div nz-result-extra>
+                    <a href="/products"><button nz-button nzType="primary">Xem sản phẩm</button></a>
+                </div>
+            </nz-result>
+        </ng-template>
+
+
+    </div>
+</div>
+<div class="social animated wow fadeInUp" data-wow-delay=".1s">
+    <div class="container row mx-auto">
+        <div class="col-sm-3 social-ic">
+            <a href="#">FACEBOOK</a>
+        </div>
+        <div class="col-sm-3 social-ic">
+            <a href="#">TWITTER</a>
+        </div>
+        <div class="col-sm-3 social-ic">
+            <a href="#">GOOGLE+</a>
+        </div>
+        <div class="col-sm-3 social-ic">
+            <a href="#">PINTEREST</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

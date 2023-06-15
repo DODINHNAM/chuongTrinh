@@ -1,0 +1,62 @@
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Thanh toán</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/home">Trang chủ<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="#">Thanh toán</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="login">
+    <div class="container">
+        <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="row">
+            <div class="col-md-6 login-do1 animated wow fadeInLeft" data-wow-delay=".5s">
+                
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Nhập tên!">
+                        <input type="text" nz-input formControlName="userName" placeholder="Tên" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Nhập số điện thoại!">
+                        <input type="number" nz-input formControlName="phone" placeholder="Số điện thoại" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Nhập địa chỉ!">
+                            <input  type="text" nz-input formControlName="address" placeholder="Địa chỉ" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label>Phương thức thanh toán</nz-form-label>
+                    <nz-select formControlName="payment" (ngModelChange)="changeStatus($event)">
+                        <nz-option nzValue="Live" nzLabel="Trực tiếp"></nz-option>
+                        <nz-option nzValue="Bank transfer" nzLabel="Chuyển khoản"></nz-option>
+                    </nz-select>
+                    <div class="row mt-5" *ngIf="status == 'Bank transfer' " style="width: 100%;">
+                        <div class="col-md-3"><h4>Bạn có thế:</h4></div>
+                        <div class="col-md-9">
+                            <div style="width: 100%;">Liên hệ : 0971126791</div>
+                            <div style="width: 100%;">Chuyển khoản : 106870891858 VietinBank</div>
+                        </div>
+                    </div>
+                </nz-form-item>
+                
+            </div>
+            <div class="col-md-6 login-do animated wow fadeInRight" data-wow-delay=".5s">
+                <label class="hvr-sweep-to-top login-sub">
+                    <input type="hidden" value="insert" name="command">
+                    <input type="submit" value="Xác nhận thanh toán">
+                </label>
+            </div>
+            <div class="clearfix"> </div>
+        </form>
+    </div>
+
+
+</div>

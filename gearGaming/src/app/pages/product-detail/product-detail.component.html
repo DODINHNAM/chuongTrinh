@@ -1,0 +1,254 @@
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Chi tiết sản phẩm</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/home">Trang chủ<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="#">Sản phẩm<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="#">Chi tiết sản phẩm</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="product">
+    <div class="container row  mx-auto">
+        <div class="col-md-3 product-bottom ">
+            <!--categories-->
+            <div class="categories animated wow fadeInUp animated" data-wow-delay=".5s">
+                <h3>Loại Sản Phẩm</h3>
+
+                <ul class="cate">
+
+                    <li *ngFor="let item of listOfCategory"><i class="glyphicon glyphicon-menu-right"></i><a
+                            href="/products/{{item.categoryID}}"> {{item.categoryName}}</a></li>
+
+                </ul>
+
+            </div>
+            <div class="sellers animated wow fadeInUp" data-wow-delay=".5s">
+
+                <h3 class="best" style="margin-top: 10px;">Bán Chạy Nhất</h3>
+                <div class="product-head">
+
+                    <div *ngFor="let item of listOfData4" class="product-go">
+                        <div class=" fashion-grid">
+                            <a href="product-detail/{{item.productID}}"><img class="img-responsive "
+                                    src="../../assets/{{item.productImage}}" alt=""></a>
+
+                        </div>
+                        <div class=" fashion-grid1">
+                            <h6 class="best2"><a href="product-detail/{{item.productID}}">
+                                    {{item.productName}}
+                                </a></h6>
+                            <span class=" price-in1" *ngIf="item?.productPromotion <= 0 "> {{item?.productPrice | number}} VNĐ</span>
+                            <span class=" price-in1" *ngIf="item?.productPromotion > 0 "><span class="km">{{item?.productPrice | number}} VNĐ</span><span> - {{item?.productPromotion | number}}% </span><span>{{item?.productPrice * (1 - (item?.productPromotion)/100) | number}} VNĐ</span></span>
+                            
+                            <p><a *ngIf="item.productQuantily > 0 " (click)="addToCart(item)"
+                                    data-text="Thêm vào giỏ" class="but-hover1 item_add">Thêm vào giỏ</a></p>
+                        </div>
+
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-8 animated wow fadeInRight" data-wow-delay=".5s">
+            <div class="row">
+                <div class="col-md-5 grid-im">
+
+                    <div class="flexslider">
+                        <ul class="slides">
+                            <li>
+                                <div class="thumb-image"> <img src="../../assets/{{product.productImage}}"
+                                        data-imagezoom="true" class="img-responsive"> </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-7 single-top-in">
+                    <div class="span_2_of_a1 simpleCart_shelfItem">
+                        <h3>{{product.productName}}</h3>
+
+                        <div class="price_single">
+                            
+                            <span  *ngIf="product.productQuantily == 0 "  class="text-danger">Đã hết hàng</span>
+                            <br>
+                            <span class="reducedfrom item_price" *ngIf="product?.productPromotion <= 0 "> {{product?.productPrice | number}} VNĐ</span>
+                            <span class="reducedfrom item_price" *ngIf="product?.productPromotion > 0 "><span class="km">{{product?.productPrice | number}} VNĐ</span><span> - {{product?.productPromotion | number}}% </span><h4>{{product?.productPrice * (1 - (product?.productPromotion)/100) | number}} VNĐ</h4></span>
+                        
+                            <a *ngIf="product.productQuantily > 0 " (click)="addToCart(product)"
+                                data-text="Thêm vào giỏ" class="but-hover1 item_add">Thêm vào giỏ</a>
+                            <div class="clearfix"> </div>
+                            <div style="color:#0056b3">Số lượng sản phẩm : {{product.productQuantily | number}}</div>
+                        </div>
+
+
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="sap_tabs">
+                        <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                            <ul class="resp-tabs-list">
+                                <li class="resp-tab-item " aria-controls="tab_item-0" role="tab" style="width: 28%;"><span>Mô Tả</span>
+                                </li>
+                                <li class="resp-tab-item" aria-controls="tab_item-1" role="tab" style="width: 44%;"><span><i class="glyphicon glyphicon-info-sign"></i>Chi Tiết Sản Phẩm</span></li>
+                                <li class="resp-tab-item" aria-controls="tab_item-2" role="tab" style="width: 28%;"><span><i class="glyphicon glyphicon-info-sign"></i>Đánh Giá</span></li>
+                                <div class="clearfix"></div>
+                            </ul>
+                            <div class="resp-tabs-container">
+                                <h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-0"><span
+                                        class="resp-arrow"></span>Mô Tả</h2>
+                                <div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0"
+                                    style="display:block">
+                                    <div class="facts">
+                                        <ul>
+                                            <li>
+                                                <h4>ƯU ĐÃI KHÁCH HÀNG :</h4>
+                                            </li>
+                                            <li>Sản phẩm chính hãng</li>
+                                            <li>Khuyến mãi đặt biệt</li>
+                                            <li>GIAO HÀNG MIỄN PHÍ VỚI HÓA ĐƠN TRÊN 8.000.000 Đ</li>
+                                            <li>Vận chuyển nhanh</li>
+                                            <li>Bảo hành sản phẩm trọn đời</li>
+                                            <li>Hỗ trợ trực tuyến dành cho khách hàng VIP</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <h2 class="resp-accordion" role="tab" aria-controls="tab_item-1"><span
+                                        class="resp-arrow"></span>Additional Information</h2>
+                                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
+                                    <h3>Thông số kỹ thuật chi tiết {{product.productName}}
+                                    </h3>
+                                    <div class="facts1">
+                                        <h3>Mô tả</h3>
+                                        <div class="color">
+
+                                            <span>
+                                                {{product.productDescription}}
+                                            </span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <h3>Kích thước & trọng lượng</h3>
+                                        <div class="color">
+                                            <p>Kích thước</p>
+                                            <span>
+                                                {{product.productDimensions}}
+                                            </span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="color">
+                                            <p>Trọng lượng</p>
+                                            <span>
+                                                {{product.productWeight}}
+                                            </span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="color">
+                                            <p>Chất liệu</p>
+                                            <span>
+                                                {{product.productMaterial}}
+                                            </span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <h2 class="resp-accordion" role="tab" aria-controls="tab_item-2"><span
+                                        class="resp-arrow"></span>Đánh giá</h2>
+                                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
+                                    <div class="col-md-12 mb-4">
+                                        <form class="mt-4" [formGroup]="validateForm" #form="ngForm" (ngSubmit)="submitForm(form.value)">
+                                            <div>
+                                                <h4>Đánh giá của bạn</h4>
+                                                <fieldset class="starability-basic" >
+                                                    <input type="radio" id="rate5" formControlName="reviewStar" ngModel  value="5" name="reviewStar" checked="checked"/>
+                                                    <label for="rate5" title="Amazing">5 stars</label>
+                                                    <input type="radio" id="rate4" formControlName="reviewStar" ngModel value="4" name="reviewStar"/>
+                                                    <label for="rate4" title="Very good">4 stars</label>
+                                                    <input type="radio" id="rate3" formControlName="reviewStar" ngModel value="3" name="reviewStar"/>
+                                                    <label for="rate3" title="Average">3 stars</label>
+                                                    <input type="radio" id="rate2" formControlName="reviewStar" ngModel value="2" name="reviewStar"/>
+                                                    <label for="rate2" title="Not good">2 stars</label>
+                                                    <input type="radio" id="rate1" formControlName="reviewStar" ngModel value="1" name="reviewStar"/>
+                                                    <label for="rate1" title="Terrible">1 star</label>
+                                                </fieldset>
+                                                <textarea formControlName="reviewMessage" ngModel id="reviewMessage" name="reviewMessage" rows="4" cols="50"   placeholder="Nội dung đánh giá sản phẩm"></textarea>
+                                            </div>
+                                            
+                                            <button class="btn btn-outline-success my-2 my-sm-0 text-white" style="background-color: #28d500;"
+                                                            type="submit">Gửi</button>
+                                        </form>
+                                        <div id="danhgia" class="mt-5">
+                                            <h4 class="mb-3">Các đánh giá khác</h4>
+                                                <div *ngFor="let data of listOfData2;">
+                                                    <p class="mt-2" style="margin-bottom: 0px;"><strong>{{data.reviewName}} ({{data.reviewStar}} sao): </strong> {{data.reviewMessage}}  </p>
+                                                    <p style="font-size: 10px;margin-bottom: 20px;"> Ngày {{data.date}}</p>
+                                                </div>
+                                                
+                                                <nz-pagination [nzPageIndex]="pageIndex" [nzTotal]="totalReview" nzShowSizeChanger
+                                                    [nzPageSize]="pageSize" (nzPageIndexChange)="onPageIndexChange($event)"
+                                                    (nzPageSizeChange)="onPageSizeChange($event)">
+                                                </nz-pagination>
+                                                
+                                        </div>
+                                        <div class="clearfix"> </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!---->
+                    </div>
+
+                    <div class="clearfix"> </div>
+                
+                </div>
+            </div>
+
+            <div class="page-header mt-2">
+                <h4>SẢN PHẨM LIÊN QUAN</h4>
+            </div>
+            <div class=" row mb-4">
+                <ng-container  *ngFor="let item of listOfData1">
+                    <div  *ngIf="item.productID != product.productID" class="col-sm-4 item-grid simpleCart_shelfItem mt-2" style="max-height: 320px;">
+
+                        <div class="grid-pro" style="height: 320px;">
+                            <div class=" grid-product ">
+                                <figure>
+                                    <a href="/product-detail/{{item.productID}}">
+                                        <div class="grid-img">
+                                            <img  src="../../assets/{{item.productImage}}" class="img-responsive" alt="">
+                                        </div>
+                                        
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="women">
+                                <h6><a href="/product-detail/{{item.productID}}">
+                                    {{item.productName}}
+                                    </a></h6>
+                                <p>
+                                    <em class="item_price" *ngIf="item?.productPromotion <= 0 "> {{item?.productPrice | number}} VNĐ</em>
+                                    <em class="item_price" *ngIf="item?.productPromotion > 0 "><span class="km">{{item?.productPrice | number}} VNĐ</span><span> - {{item?.productPromotion | number}}% </span><em>{{item?.productPrice * (1 - (item?.productPromotion)/100) | number}} VNĐ</em></em>
+                                    </p>
+                                <a *ngIf="item.productQuantily > 0 " (click)="addToCart(item)"
+                                    data-text="Thêm vào giỏ" class="but-hover1 item_add">Thêm vào giỏ</a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </ng-container >
+
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+</div>
